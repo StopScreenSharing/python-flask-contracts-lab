@@ -11,13 +11,13 @@ if __name__ == '__main__':
 
 @app.route('/contract/<int:id>')
 def get_contract(id):
-    for contract in contracts:
+    for contract in contracts: #searches through each contract
         if contract["id"] == id:
-            return contract['contract_information'], 200
-        return 'Contract not found', 404
+            return contract['contract_information'], 200 # if ID matches, return the info 
+        return 'Contract not found', 404 # return error if ID does not match 
 
 @app.route('/customer/<customer_name>')
 def get_customer(customer_name):
-    if customer_name.lower() in customers:
-        return make_response('', 204)
+    if customer_name.lower() in customers: #lowercases all customer names user inputs to match 
+        return make_response('', 204) #If name found, return response but with no info for privacy 
     return make_response({"error": "Customer not found"}, 404)
