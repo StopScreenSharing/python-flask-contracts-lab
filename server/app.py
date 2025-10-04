@@ -8,3 +8,15 @@ app = Flask(__name__)
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
+
+@app.route('/contract/<int:id>')
+def get_contract(id):
+    for contract in contracts:
+        if contract["id"] == id:
+            response = make_response(contract, 200)
+            return response 
+    return make_response({'error': 'Contract not found'}, 404)
+
+@app.route('/customer/<customer_name>')
+def get_customer(customer_name):
+    return make_response('', 204)
