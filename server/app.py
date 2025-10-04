@@ -13,9 +13,8 @@ if __name__ == '__main__':
 def get_contract(id):
     for contract in contracts:
         if contract["id"] == id:
-            response = make_response(contract, 200)
-            return response 
-    return make_response({'error': 'Contract not found'}, 404)
+            return contract['contract_information'], 200
+        return 'Contract not found', 404
 
 @app.route('/customer/<customer_name>')
 def get_customer(customer_name):
