@@ -19,4 +19,6 @@ def get_contract(id):
 
 @app.route('/customer/<customer_name>')
 def get_customer(customer_name):
-    return make_response('', 204)
+    if customer_name.lower() in customers:
+        return make_response('', 204)
+    return make_response({"error": "Customer not found"}, 404)
